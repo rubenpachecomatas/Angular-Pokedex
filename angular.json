@@ -84,6 +84,7 @@
             ],
             "scripts": [],
             "assets": [
+              "src/pokedex.json",
               "src/favicon.ico",
               "src/assets"
             ]
