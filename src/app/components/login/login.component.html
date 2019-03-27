@@ -19,7 +19,7 @@
       <fieldset>
       
       <!-- Form Name -->
-      <legend>Pokedex</legend>
+      <legend>Log In</legend>
       
       <!-- Text input-->
       <div class="form-group">
@@ -44,6 +44,42 @@
         <label class="col-md-10 control-label" for="button"></label>
         <div class="col-md-10">
           <button (click)="login(email, password)" id="button" name="button" class="btn btn-primary">Log In</button>
+        </div>
+      </div>
+      
+      </fieldset>
+    </form>
+  </div>
+  <div id="formulario">
+    <form class="form-horizontal border" id="caja" >
+      <fieldset>
+      
+      <!-- Form Name -->
+      <legend>Sign In</legend>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-10 control-label" for="email">Email</label>  
+        <div class="col-md-10">
+        <input [(ngModel)]="emailC" id="email" name="email" type="email" placeholder="Your email" class="form-control input-md" required="">
+          
+        </div>
+      </div>
+      
+      <!-- Password input-->
+      <div class="form-group">
+        <label class="col-md-10 control-label" for="passwod">Password</label>
+        <div class="col-md-10">
+          <input [(ngModel)]="passwordC" id="password" name="password" type="password" placeholder="Your password" class="form-control input-md" required="">
+          
+        </div>
+      </div>
+      
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-10 control-label" for="button"></label>
+        <div class="col-md-10">
+          <button (click)="signin(emailC, passwordC)" id="button" name="button" class="btn btn-primary">Sign In</button>
         </div>
       </div>
       

@@ -12,14 +12,13 @@ export class LoginComponent implements OnInit {
 
   email = "";
   password = "";
+  emailC = "";
+  passwordC = "";
 
   constructor(public afAuth: AngularFireAuth) {
   }
   
   login(email, password) {
-    console.log("Holaaaaaaaaaaaaaaaaaaaa")
-    console.log(email)
-    console.log(password)
     this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -30,6 +29,15 @@ export class LoginComponent implements OnInit {
         alert(errorMessage);
       }
       console.log(error);
+    });
+  }
+
+  signin(emailC, passwordC) {
+    this.afAuth.auth.createUserWithEmailAndPassword(emailC, passwordC).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
     });
   }
 
