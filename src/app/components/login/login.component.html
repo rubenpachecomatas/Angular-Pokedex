@@ -25,7 +25,7 @@
       <div class="form-group">
         <label class="col-md-10 control-label" for="email">Email</label>  
         <div class="col-md-10">
-        <input id="email" name="email" type="email" placeholder="Your email" class="form-control input-md" required="">
+        <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="Your email" class="form-control input-md" required="">
           
         </div>
       </div>
@@ -34,7 +34,7 @@
       <div class="form-group">
         <label class="col-md-10 control-label" for="passwod">Password</label>
         <div class="col-md-10">
-          <input id="passwod" name="passwod" type="password" placeholder="Your password" class="form-control input-md" required="">
+          <input [(ngModel)]="password" id="password" name="password" type="password" placeholder="Your password" class="form-control input-md" required="">
           
         </div>
       </div>
@@ -43,7 +43,7 @@
       <div class="form-group">
         <label class="col-md-10 control-label" for="button"></label>
         <div class="col-md-10">
-          <button type="submit" id="button" name="button" class="btn btn-primary">Log In</button>
+          <button (click)="login(email, password)" id="button" name="button" class="btn btn-primary">Log In</button>
         </div>
       </div>
       
