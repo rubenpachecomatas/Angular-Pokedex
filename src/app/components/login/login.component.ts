@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { User } from "../../models/user";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,35 +9,41 @@ import { User } from "../../models/user";
 })
 export class LoginComponent implements OnInit {
 
-  email = "";
-  password = "";
-  emailC = "";
-  passwordC = "";
+  email = '';
+  password = '';
+  emailC = '';
+  passwordC = '';
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
   }
   
   login(email, password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
-        alert('Wrong password.');
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-    });
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((success) => {
+        this.router.navigate([`/home/pokemons`])
+      }).catch((error) =>  {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
   }
 
   signin(emailC, passwordC) {
-    this.afAuth.auth.createUserWithEmailAndPassword(emailC, passwordC).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-    });
+    this.afAuth.auth.createUserWithEmailAndPassword(emailC, passwordC)
+     .then((success) => {
+       this.router.navigate([`/home/pokemons`])
+      }).catch((error) =>  {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        // ...
+      });
   }
 
   ngOnInit() {
