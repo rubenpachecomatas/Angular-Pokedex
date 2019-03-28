@@ -16,6 +16,9 @@ import { environment } from '../environments/environment';
 
 import { FormsModule } from "@angular/forms";
 
+import { HttpClientModule } from "@angular/common/http";
+import { AccesoDatosService } from './services/acceso-datos.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +32,11 @@ import { FormsModule } from "@angular/forms";
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
     
   ],
-  providers: [],
+  providers: [AccesoDatosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

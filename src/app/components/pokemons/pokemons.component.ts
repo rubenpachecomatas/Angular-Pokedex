@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from "../../models/pokemon";
-import { Observable } from 'rxjs';
 import pokedex from '../../../pokedex.json';
+import { AccesoDatosService } from "../../services/acceso-datos.service";
 
 @Component({
   selector: 'app-pokemons',
@@ -10,10 +9,13 @@ import pokedex from '../../../pokedex.json';
 })
 export class PokemonsComponent implements OnInit {
 
-  pokemons = pokedex;
+  pokemons;
 
-  constructor() {
+  constructor(private AccesoDatos: AccesoDatosService) {
     console.log(pokedex);
+    this.pokemons = this.AccesoDatos.getUrl().subscribe(res => {
+      this.pokemons = res;
+    })
   }
 
   ngOnInit() {
