@@ -18,6 +18,7 @@ import { FormsModule } from "@angular/forms";
 
 import { HttpClientModule } from "@angular/common/http";
 import { AccesoDatosService } from './services/acceso-datos.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { AccesoDatosService } from './services/acceso-datos.service';
     HttpClientModule
     
   ],
-  providers: [AccesoDatosService],
+  providers: [AccesoDatosService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

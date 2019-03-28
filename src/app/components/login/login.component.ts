@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((success) => {
-        this.router.navigate([`/home/pokemons`])
+        this.router.navigate([`/home/pokemons`]);
       }).catch((error) =>  {
         // Handle Errors here.
         let errorCode = error.code;
