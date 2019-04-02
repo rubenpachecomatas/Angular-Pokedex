@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-
-import { PokemonsComponent } from './components/pokemons/pokemons.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { AngularFireModule } from '@angular/fire';
@@ -19,12 +17,17 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AccesoDatosService } from './services/acceso-datos.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { UsersComponent } from './components/principal/users/users.component';
+import { PokemonsComponent } from "./components/principal/pokemons/pokemons.component";
+import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonsComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,

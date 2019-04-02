@@ -16,7 +16,6 @@
 
 </head>
 <body>
-
     <!--NavBar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#"><i class="fas fa-pastafarianism"></i> Pokedex</a>
@@ -27,8 +26,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Pokemons<span class="sr-only">(current)</span></a>
+            <a class="nav-link" (click)="onSelect('pokemons')">Pokemons<span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item active">
+              <a class="nav-link" (click)="onSelect('users')">Users</a>
+            </li>
           <li class="nav-item active">
             <a class="nav-link" href="#" (click)='signout()'>Sign Out</a>
           </li>
@@ -36,20 +38,7 @@
       </div>
     </nav>
 
-    <!--Pokemons-->
-    
-    <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-2 d-flex align-items-stretch" *ngFor="let pokemon of pokemons.pokemon">
-              <div class="card" id="card" style="width: 100%">
-                <img class="card-img-top" src="{{pokemon.img}}" alt="Card image cap">
-                <div class="card-body">
-                  <p class="text"><span class="badge badge-light">{{pokemon.id}}</span> {{pokemon.name}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
-
+    <app-users *ngIf="loadedFeature === 'users'"></app-users>
+    <app-pokemons *ngIf="loadedFeature === 'pokemons'"></app-pokemons>
 </body>
 </html>
