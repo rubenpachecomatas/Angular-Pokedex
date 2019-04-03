@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.createUserWithEmailAndPassword(emailC, passwordC)
      .then((success) => {
 
-        const UserCollection = this.db.collection<User>('usuarios');
-        UserCollection.add({ email: emailC, role: 1 });
+        const UserCollection = this.db.collection<User>('usuarios').doc(this.afAuth.auth.currentUser.uid).set({
+          email: emailC,
+          role: 1
+        });
 
         this.router.navigate([`/home/pokemons`])
       }).catch((error) =>  {
