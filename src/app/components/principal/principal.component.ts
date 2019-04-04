@@ -16,8 +16,12 @@ export class PrincipalComponent implements OnInit {
   rol: number;
 
   user: User = null;
+  userName;
 
   constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {
+
+    this.userName = this.afAuth.auth.currentUser.displayName;
+    console.log(this.userName);
 
     this.afAuth.authState.subscribe((auth) => {
           let docRef = db.collection("usuarios").doc(auth.uid);
@@ -32,7 +36,7 @@ export class PrincipalComponent implements OnInit {
                   console.log("No such document!");
               }
           }).catch(function (error) {
-              console.log("Error getting document:", error);
+              console.log('Error getting document:', error);
           });
    });
     

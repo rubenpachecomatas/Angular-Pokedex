@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   password = '';
   emailC = '';
   passwordC = '';
+  nombreC = '';
 
   constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFirestore) {
   }
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((success) => {
+        console.log(this.afAuth.auth.currentUser.displayName);
         this.router.navigate([`/home/pokemons`]);
       }).catch((error) =>  {
         // Handle Errors here.
@@ -40,10 +42,14 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.createUserWithEmailAndPassword(emailC, passwordC)
      .then((success) => {
 
-        const UserCollection = this.db.collection<User>('usuarios').doc(this.afAuth.auth.currentUser.uid).set({
-          email: emailC,
-          role: 1
-        });
+      this.afAuth.auth.currentUser.updateProfile({
+        displayName: this.nombreC
+      });
+
+      const UserCollection = this.db.collection<User>('usuarios').doc(this.afAuth.auth.currentUser.uid).set({
+        email: emailC,
+        role: 1
+      });
 
         this.router.navigate([`/home/pokemons`])
       }).catch((error) =>  {
