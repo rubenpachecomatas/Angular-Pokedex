@@ -17,8 +17,8 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AccesoDatosService } from './services/acceso-datos.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { UsersComponent } from './components/principal/users/users.component';
-import { PokemonsComponent } from "./components/principal/pokemons/pokemons.component";
+import { UsersComponent } from './components/users/users.component';
+import { PokemonsComponent } from "./components/pokemons/pokemons.component";
 import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({

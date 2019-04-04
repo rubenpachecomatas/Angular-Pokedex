@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-principal',
@@ -18,7 +19,7 @@ export class PrincipalComponent implements OnInit {
   user: User = null;
   userName;
 
-  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {
+  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore, private router: Router) {
 
     this.userName = this.afAuth.auth.currentUser.displayName;
     console.log(this.userName);
@@ -50,11 +51,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   onSelect(feature: string){
-    if (feature === 'pokemons') {
-      this.loadedFeature = 'pokemons';
-    } else if (feature === 'users') {
-      this.loadedFeature = 'users';
-    }
+    this.router.navigate([`/home/` + feature])
   }
 
 }
