@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -17,19 +18,12 @@ export class LoginComponent implements OnInit {
   passwordC = '';
   nombreC = '';
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFirestore) {
+  constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFirestore, private authSer: AuthService) {
   }
   
   login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((success) => {
-        this.afAuth.authState.subscribe(res => {
-          if (res && res.uid) {
-            console.log('user is logged in');
-          } else {
-            console.log('user not logged in');
-          }
-        });
         console.log(this.afAuth.auth.currentUser.displayName);
         this.router.navigate([`/home/pokemons`]);
       }).catch((error) =>  {

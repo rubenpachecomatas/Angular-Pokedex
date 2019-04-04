@@ -17,6 +17,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AccesoDatosService } from './services/acceso-datos.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 import { UsersComponent } from './components/users/users.component';
 import { PokemonsComponent } from "./components/pokemons/pokemons.component";
 import { PrincipalComponent } from './components/principal/principal.component';
@@ -40,7 +41,7 @@ import { PrincipalComponent } from './components/principal/principal.component';
     HttpClientModule
     
   ],
-  providers: [AccesoDatosService, AuthGuardService],
+  providers: [AccesoDatosService, AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

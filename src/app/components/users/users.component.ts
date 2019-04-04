@@ -18,14 +18,6 @@ export class UsersComponent implements OnInit {
   constructor(public db: AngularFirestore, public afAuth: AngularFireAuth) {
     this.usuarios = this.db.collection('usuarios').valueChanges();
 
-    this.afAuth.authState.subscribe(res => {
-      if (res && res.uid) {
-        console.log('user is logged in');
-      } else {
-        console.log('user not logged in');
-      }
-    });
-
   }
   
   ngOnInit() {
