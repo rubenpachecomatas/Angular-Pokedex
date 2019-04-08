@@ -7,8 +7,8 @@ import { PokemonsComponent } from './components/pokemons/pokemons.component';
 
 const routes: Routes = [
   { path: 'home/login', component: LoginComponent },
-  { path: 'home/pokemons', component: PokemonsComponent, canActivate: [AuthGuardService] },
-  { path: 'home/users', component: UsersComponent, canActivate: [AuthGuardService] },
+  { path: 'home/pokemons', component: PokemonsComponent },
+  { path: 'home/users', component: UsersComponent },
   { path: '**', redirectTo: 'home/login' },
 ];
 

@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<div *ngIf="!(authService.canActivate())">
+    <app-login></app-login>
+</div>
+<div *ngIf="authService.canActivate()">
+    <router-outlet></router-outlet>
+</div>
