@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
-import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 
 @Component({
@@ -20,10 +19,27 @@ export class PrincipalComponent implements OnInit {
   user: User = null;
   userName;
 
-  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore, private router: Router, public authGuardService: AuthGuardService) {
+  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore, private router: Router) {
 
     this.userName = this.afAuth.auth.currentUser.displayName;
     console.log(this.userName);
+
+    this.afAuth.authState.subscribe((auth) => {
+          let docRef = db.collection("usuarios").doc(auth.uid);
+   
+          docRef.get().toPromise().then(doc => {
+              if (doc.exists) {
+                console.log("Document data:", doc.data());
+                this.user = doc.data();
+                console.log(this.user);
+              } else {
+                  // doc.data() will be undefined in this case
+                  console.log("No such document!");
+              }
+          }).catch(function (error) {
+              console.log('Error getting document:', error);
+          });
+   });
     
   }
 

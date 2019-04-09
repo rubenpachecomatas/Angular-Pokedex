@@ -9,6 +9,6 @@ import { AuthGuardService } from "./services/auth-guard.service";
 export class AppComponent {
   title = 'Angular-Pokedex';
 
-  constructor( public authService: AuthGuardService) {
+  constructor( public authGuardService: AuthGuardService) {
   }
 }
