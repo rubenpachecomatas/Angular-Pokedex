@@ -17,24 +17,19 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {
 
-    // Keep the session active.
+    // Keep the session active and get the role.
 
     this.afAuth.authState.subscribe(res => {
       this.authState = res;
-    });
-
-    // Get the role.
-
-    this.afAuth.authState.subscribe((auth) => {
-      let docRef = this.db.collection('usuarios').doc(auth.uid);
-
-      docRef.get().toPromise().then(doc => {
-        if (doc.exists) {
-          console.log('Document data:', doc.data());
-          this.user = doc.data();
-          console.log(this.user.role);
-        }
-      });
+      if (this.authState) {
+        let docRef = this.db.collection('usuarios').doc(res.uid);
+ 
+        docRef.get().toPromise().then(doc => {
+          if (doc.exists) {
+            this.user = doc.data();
+          }
+        });
+      }
     });
   }
 
