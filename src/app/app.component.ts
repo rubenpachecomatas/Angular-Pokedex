@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthGuardService } from "./services/auth-guard.service";
+import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,6 @@ import { AuthGuardService } from "./services/auth-guard.service";
 export class AppComponent {
   title = 'Angular-Pokedex';
 
-  constructor( public authGuardService: AuthGuardService) {
+  constructor( public authService: AuthService) {
   }
 }

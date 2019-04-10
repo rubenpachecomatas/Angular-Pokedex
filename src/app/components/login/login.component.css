@@ -1,15 +1,9 @@
 
-#formulario {
-    margin: 0 auto;
+#form {
     padding: 1%;
 }
 
-#caja {
-    padding: 1%;
+.box {
+    padding: 5%;
     background-color: lightgray;
-}
-
-body {
-    background-image: url('https://cdnb.artstation.com/p/assets/images/images/003/298/265/large/sergey-lushchyk-finele.jpg?1472143897');
-    height: 100vh;
 }

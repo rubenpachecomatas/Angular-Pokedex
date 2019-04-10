@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../models/user';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 
 
 @Injectable({
@@ -14,24 +15,35 @@ export class AuthService {
   user: User = null;
   userName;
 
-  constructor(public afAuth: AngularFireAuth,  public db: AngularFirestore) {
+  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {
+
+    // Keep the session active.
 
     this.afAuth.authState.subscribe(res => {
       this.authState = res;
-      console.log(this.authState);
-     });
+    });
+
+    // Get the role.
 
     this.afAuth.authState.subscribe((auth) => {
-      let docRef = this.db.collection("usuarios").doc(auth.uid);
+      let docRef = this.db.collection('usuarios').doc(auth.uid);
 
       docRef.get().toPromise().then(doc => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          console.log('Document data:', doc.data());
           this.user = doc.data();
           console.log(this.user.role);
         }
       });
     });
+  }
 
+  // Check if someone is logged.
+
+  checkUser() {
+    if (this.afAuth.auth.currentUser) {
+      return true;
+    }
+    return false;
   }
 }

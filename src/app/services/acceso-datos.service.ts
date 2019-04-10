@@ -8,6 +8,8 @@ export class AccesoDatosService {
 
   constructor(private http: HttpClient) { }
 
+  // Get the pokemon data.
+
   getUrl(): any {
     const url = 'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
     return this.http.get(url);
