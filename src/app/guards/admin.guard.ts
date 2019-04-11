@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class AdminGuard implements CanActivate {
 
-  constructor(public afAuth: AngularFireAuth, private authService: AuthService) { }
+  constructor(public afAuth: AngularFireAuth, private authService: AuthService, private router: Router) { }
 
   // Restrict access to the users list.
 
