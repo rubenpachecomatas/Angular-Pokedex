@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   login(email, password) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((success) => {
-        console.log(this.afAuth.auth.currentUser.displayName);
         this.router.navigate([`/home/pokemons`]);
       }).catch((error) =>  {
         // Handle Errors here.

@@ -13,10 +13,16 @@ export class AdminGuard implements CanActivate {
   // Restrict access to the users list.
 
   canActivate() {
-    if (this.authService.user.role === 2) {
-      return true;
+    if (this.authService.checkUser()) {
+      if (this.authService.user.role === 2) {
+        return true;
+      } else {
+        this.router.navigate([`/home/pokemons`]);
+        return false;
+      }
+    } else {
+      this.router.navigate([`/home/pokemons`]);
     }
-    return false;
   }
 
 }
